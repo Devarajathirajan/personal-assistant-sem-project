@@ -66,7 +66,7 @@ fun MainScreenView() {
 @Composable
 fun NavigationGraph(navController: NavHostController, modifier: Modifier = Modifier) {
     NavHost(
-        navController, startDestination = BottomNavItem.Tasks.screen_route,
+        navController, startDestination = BottomNavItem.Home.screen_route,
         modifier = modifier
     ) {
         composable(BottomNavItem.Home.screen_route) {

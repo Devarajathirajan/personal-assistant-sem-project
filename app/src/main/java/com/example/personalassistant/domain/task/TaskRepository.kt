@@ -10,4 +10,6 @@ interface TaskRepository {
     suspend fun getTaskById(taskId: Int): Task
 
     suspend fun updateTasks(task: Task)
+
+    fun getMileStoneList(): Flow<List<Milestone>>
 }

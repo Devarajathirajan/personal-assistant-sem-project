@@ -99,7 +99,8 @@ fun TaskListItem(task: Task, i: Int, openedIndex: Int, onCardClicked: ()->Unit, 
                                     .padding(
                                         top = 8.dp, start = 8.dp,
                                         end = 8.dp
-                                    ).clickable { onCheckChange(!milestone.isCompleted, index) },
+                                    )
+                                    .clickable { onCheckChange(!milestone.isCompleted, index) },
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 if (milestone.isCompleted) {
@@ -115,6 +116,10 @@ fun TaskListItem(task: Task, i: Int, openedIndex: Int, onCardClicked: ()->Unit, 
                                         onCheckChange(it, index)
                                     })
                                     Text(text = milestone.name)
+                                }
+                                milestone.deadLine?.let {
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Text(text = "(${it.substringBefore("T")})")
                                 }
                             }
                         }
