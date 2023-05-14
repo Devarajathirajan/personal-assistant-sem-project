@@ -17,11 +17,11 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 
 class WalletRepositoryImpl(
-    private val context: Context, private val walletDatabase: WalletDatabase
+    private val context: Context, private val db: WalletDatabase
 ) : WalletRepository {
 
     override suspend fun getTransactions(): Flow<List<Transaction>> {
-        return walletDatabase.transactionDao().getTransactions().map {
+        return db.transactionDao().getTransactions().map {
             it.map { entity ->
                 entity.asModel()
             }
@@ -29,12 +29,12 @@ class WalletRepositoryImpl(
     }
 
     override suspend fun addTransaction(transaction: Transaction) {
-        walletDatabase.transactionDao().addTransaction(transaction.asEntity())
+        db.transactionDao().addTransaction(transaction.asEntity())
     }
 
     override suspend fun getBalanceCheck(): Flow<BalanceCheck> {
         return channelFlow {
-            walletDatabase.transactionDao().getTransactions().collectLatest {
+            db.transactionDao().getTransactions().collectLatest {
                 var totalIncome = 0
                 var totalExpense = 0
                 it.forEach { transaction ->

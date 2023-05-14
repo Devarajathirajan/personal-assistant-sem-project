@@ -27,6 +27,7 @@ import com.example.personalassistant.presentation.home.HomeScreen
 import com.example.personalassistant.presentation.main.navigation.BottomNavItem
 import com.example.personalassistant.presentation.main.navigation.Screen
 import com.example.personalassistant.presentation.task.TaskScreen
+import com.example.personalassistant.presentation.task.add_edit.AddTaskScreen
 import com.example.personalassistant.presentation.wallet.add_edit.AddTransactionScreen
 import com.example.personalassistant.presentation.wallet.WalletScreen
 import com.example.personalassistant.ui.theme.PersonalAssistantTheme
@@ -65,25 +66,30 @@ fun MainScreenView() {
 @Composable
 fun NavigationGraph(navController: NavHostController, modifier: Modifier = Modifier) {
     NavHost(
-        navController, startDestination = BottomNavItem.Home.screen_route,
+        navController, startDestination = BottomNavItem.Tasks.screen_route,
         modifier = modifier
     ) {
         composable(BottomNavItem.Home.screen_route) {
             HomeScreen()
         }
         composable(BottomNavItem.Tasks.screen_route) {
-            TaskScreen()
+            TaskScreen(onAddTaskAction = {navController.navigate(
+                Screen.AddTask.screen_route
+            )})
         }
         composable(BottomNavItem.Event.screen_route) {
             EventsScreen()
         }
         composable(BottomNavItem.Wallet.screen_route) {
-            WalletScreen(onAddButtonClick =  {navController.navigate(
+            WalletScreen(onAddTransactionAction =  {navController.navigate(
                 Screen.AddTransaction.screen_route
             )})
         }
         composable(Screen.AddTransaction.screen_route) {
             AddTransactionScreen(navController)
+        }
+        composable(Screen.AddTask.screen_route) {
+            AddTaskScreen(navController)
         }
     }
 }

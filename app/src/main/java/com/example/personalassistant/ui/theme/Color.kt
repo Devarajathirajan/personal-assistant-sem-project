@@ -9,4 +9,10 @@ val cardColor2 = Color(0XFFF62F63)
 val chipColor0 = Color(0XFF164E63)
 val chipColor1 = Color(0XFF41CBBF)
 
+val taskCardColors = listOf(
+    Color(0XFF64748B),
+    Color(0XFFAC58F5),
+    Color(0XFF41CBBF)
+)
+
 val textFieldBackground = Color(0XFF31344A)
